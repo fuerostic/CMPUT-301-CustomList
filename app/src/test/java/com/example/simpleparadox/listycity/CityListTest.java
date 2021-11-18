@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.NoSuchElementException;
+
 class CityListTest {
 
     private CityList mockCityList() {
@@ -54,5 +56,53 @@ class CityListTest {
         assertEquals(0, city.compareTo(cityList.getCities().get(0)));
         assertEquals(0, mockCity().compareTo(cityList.getCities().get(1)));
     }
+
+    @Test
+    void testCountCities(){
+        CityList cityList = mockCityList();
+
+        assertEquals(1, cityList.getCities().size());
+
+        City city = new City("Regina", "Saskatchewan");
+        cityList.add(city);
+
+        assertEquals(2, cityList.getCities().size());
+        assertTrue(cityList.countCities() ==2);
+
+    }
+
+
+
+    @Test
+    void testDeleteCity(){
+        CityList cityList = mockCityList();
+
+        assertEquals(1, cityList.getCities().size());
+
+        City city = new City("Regina", "Saskatchewan");
+        cityList.add(city);
+        assertEquals(2, cityList.getCities().size());
+
+        cityList.deleteCity(city);
+
+        assertEquals(1, cityList.getCities().size());
+        assertTrue(cityList.getCities().size() == 1);
+
+
+    }
+
+    @Test
+    void testDeleteCityException(){
+        CityList cityList = mockCityList();
+
+        City city = new City("Yellowknife", "Northwest Territories");
+
+        assertThrows(NoSuchElementException.class, () -> {
+            cityList.deleteCity(city);
+            throw  new NoSuchElementException("element doesn't exist");
+        });
+    }
+
+
 
 }

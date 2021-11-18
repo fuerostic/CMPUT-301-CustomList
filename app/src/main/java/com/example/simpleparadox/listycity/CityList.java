@@ -1,5 +1,7 @@
 package com.example.simpleparadox.listycity;
 
+import androidx.core.widget.TextViewCompat;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,5 +34,27 @@ public class CityList {
         Collections.sort(list);
         return list;
     }
+
+    /**
+     * Return the size of the city list
+     * @return
+     * size of city list
+     */
+
+
+    public int countCities(){
+        return cities.size();
+    }
+
+    /**
+     * delete a specific city object from the list
+     * get a city object - if exists delete it - if not throw exception
+     *
+     * @return
+     * none
+     *
+     */
+
+    void deleteCity(City city){ cities.remove(city); }
 
 }
