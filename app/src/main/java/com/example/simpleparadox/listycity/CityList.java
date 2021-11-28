@@ -5,6 +5,7 @@ import androidx.core.widget.TextViewCompat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * This is a class that keeps track of a list of city objects
@@ -50,11 +51,19 @@ public class CityList {
      * delete a specific city object from the list
      * get a city object - if exists delete it - if not throw exception
      *
+     * @param
+     *  city
      * @return
      * none
      *
      */
 
-    void deleteCity(City city){ cities.remove(city); }
+    void deleteCity(City city){
+        if (cities.contains(city)) {
+            cities.remove(city);
+        }else{
+            throw  new NoSuchElementException();
+        }
+    }
 
 }

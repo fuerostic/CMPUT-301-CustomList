@@ -99,7 +99,6 @@ class CityListTest {
 
         assertThrows(NoSuchElementException.class, () -> {
             cityList.deleteCity(city);
-            throw  new NoSuchElementException("element doesn't exist");
         });
     }
 
